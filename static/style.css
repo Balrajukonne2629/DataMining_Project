@@ -1,0 +1,220 @@
+:root {
+	--bg: #f5f7fa;
+	--panel: #ffffff;
+	--line: #dce3ea;
+	--text: #1f2937;
+	--muted: #6b7280;
+	--primary: #2563eb;
+	--danger: #dc2626;
+	--success: #15803d;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	background: var(--bg);
+	color: var(--text);
+}
+
+a {
+	color: var(--primary);
+	text-decoration: none;
+}
+
+.page-shell {
+	width: min(980px, calc(100% - 32px));
+	margin: 26px auto;
+}
+
+.page-title {
+	margin: 0 0 18px;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+.hero h1 {
+	margin: 0;
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+
+.hero.compact {
+	margin-bottom: 18px;
+}
+
+.hero-copy {
+	margin: 8px 0 0;
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+.panel {
+	background: var(--panel);
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	padding: 18px;
+	margin-bottom: 14px;
+}
+
+.attendance-form {
+	display: grid;
+	gap: 16px;
+}
+
+.subject-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.subject-card {
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	padding: 12px;
+	background: #fff;
+}
+
+.subject-card h3,
+.panel h2 {
+	margin: 0 0 10px;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.subject-card label {
+	display: block;
+	font-size: 0.9rem;
+	color: var(--muted);
+	margin-top: 8px;
+}
+
+.subject-card input {
+	width: 100%;
+	margin-top: 5px;
+	padding: 9px 10px;
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	font: inherit;
+}
+
+.primary-btn {
+	padding: 10px 14px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--primary);
+	color: #fff;
+	font-size: 0.95rem;
+	cursor: pointer;
+	width: fit-content;
+}
+
+.result-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 10px;
+}
+
+.metric-card {
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	padding: 12px;
+}
+
+.metric-label {
+	display: block;
+	font-size: 0.8rem;
+	color: var(--muted);
+	margin-bottom: 6px;
+}
+
+.metric-card strong {
+	font-size: 1.15rem;
+}
+
+.metric-card.success strong,
+.chip.warning {
+	color: var(--success);
+}
+
+.metric-card.danger strong {
+	color: var(--danger);
+}
+
+.percentage-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	gap: 10px;
+}
+
+.percentage-item {
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.percentage-item span,
+.empty-state,
+figcaption {
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+figcaption {
+	font-weight: 600;
+	color: #334155;
+	margin-top: 8px;
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.chip {
+	padding: 6px 10px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: #f9fafb;
+	font-size: 0.9rem;
+}
+
+.graphs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 12px;
+}
+
+.graphs figure {
+	margin: 0;
+	border: 1px solid var(--line);
+	border-radius: 8px;
+	padding: 10px;
+	background: #fff;
+}
+
+.graphs img {
+	width: 100%;
+	border-radius: 6px;
+	display: block;
+}
+
+.back-link {
+	display: inline-block;
+	margin-top: 6px;
+	font-size: 0.95rem;
+}
+
+@media (max-width: 820px) {
+	.subject-grid,
+	.result-grid {
+		grid-template-columns: 1fr;
+	}
+}

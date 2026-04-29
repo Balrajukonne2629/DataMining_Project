@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-shell result-shell">
+	<section class="hero compact">
+		<p class="eyebrow">Analysis Result</p>
+		<h1>{{ result }}</h1>
+		<p class="hero-copy">The model evaluates subject-wise attendance percentages, total attended classes, and total absences before predicting the risk label.</p>
+	</section>
+
+	  <section class="panel result-grid">
+		  <div class="metric-card {% if risk_state == 'at_risk' %}danger{% else %}success{% endif %}">
+			<span class="metric-label">Prediction</span>
+			<strong>{{ result }}</strong>
+			<span class="metric-label">Model Suggestion: {{ model_result }}</span>
+		</div>
+
+		<div class="metric-card">
+			<span class="metric-label">Total Attended Classes</span>
+			<strong>{{ total_present }}</strong>
+		</div>
+
+		<div class="metric-card">
+			<span class="metric-label">Total Absentee Count</span>
+			<strong>{{ total_absent }}</strong>
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Subject-wise Attendance %</h2>
+		<div class="percentage-grid">
+			{% for subject, value in percentages.items() %}
+			<div class="percentage-item">
+				<span>{{ subject }}</span>
+				<strong>{{ value }}%</strong>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Weak Subjects</h2>
+		{% if weak %}
+		<div class="chips">
+			{% for subject in weak %}
+			<span class="chip warning">{{ subject }}</span>
+			{% endfor %}
+		</div>
+		{% else %}
+		<p class="empty-state">No weak subjects. Every subject is at or above 75% attendance.</p>
+		{% endif %}
+	</section>
+
+	<section class="panel">
+		<h2>Dataset Graphs (Bar)</h2>
+		<div class="graphs">
+			<figure>
+				<img src="{{ url_for('static', filename='attendance.png') }}?v={{ graph_version }}" alt="Subject-wise attendance graph">
+				<figcaption>Subject-wise Attendance</figcaption>
+			</figure>
+			<figure>
+				<img src="{{ url_for('static', filename='absent.png') }}?v={{ graph_version }}" alt="Subject-wise absentees graph">
+				<figcaption>Subject-wise Absentees</figcaption>
+			</figure>
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Dataset Graphs (Pie)</h2>
+		<div class="graphs">
+			<figure>
+				<img src="{{ url_for('static', filename='attendance_pie.png') }}?v={{ graph_version }}" alt="Subject-wise attendance pie chart">
+				<figcaption>Attendance Share by Subject</figcaption>
+			</figure>
+			<figure>
+				<img src="{{ url_for('static', filename='absent_pie.png') }}?v={{ graph_version }}" alt="Subject-wise absentee pie chart">
+				<figcaption>Absentee Share by Subject</figcaption>
+			</figure>
+		</div>
+	</section>
+
+	<a href="/" class="back-link">Analyze another student</a>
+</div>
+</body>
+</html>

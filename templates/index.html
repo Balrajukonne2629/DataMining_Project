@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="page-shell">
+	<h1 class="page-title">Smart Attendance Analyzer</h1>
+
+	<section class="panel">
+		<form action="/predict" method="post" class="attendance-form">
+			<div class="subject-grid">
+				{% for sub in ["DBMS","DM","EAD","EEA","ES","PQT"] %}
+				<div class="subject-card">
+					<h3>{{ sub }}</h3>
+					<label>
+						Present
+						<input type="number" min="0" name="{{ sub }}_present" placeholder="e.g. 40" required>
+					</label>
+					<label>
+						Absent
+						<input type="number" min="0" name="{{ sub }}_absent" placeholder="e.g. 10" required>
+					</label>
+				</div>
+				{% endfor %}
+			</div>
+
+			<button type="submit" class="primary-btn">Analyze Attendance</button>
+		</form>
+	</section>
+</div>
+</body>
+</html>
